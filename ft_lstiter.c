@@ -1,31 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_lstiter.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dboldino <dboldino@student.42prague.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/08/24 18:39:37 by dboldino          #+#    #+#             */
-/*   Updated: 2026/08/24 18:39:38 by dboldino         ###   ########.fr       */
+/*   Created: 2026/08/24 18:09:29 by dboldino          #+#    #+#             */
+/*   Updated: 2026/08/24 19:01:02 by dboldino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char *strchr(const char *s, int c)
-{
-	unsigned char		test;
-	const unsigned char	*str;
+#include "libft.h"
 
-	str = (const unsigned char *)s;
-	test = (unsigned char)c;
-	while (*str)
+void	ft_lstiter(t_list *lst, void (*f)(void *))
+{
+	while (lst != NULL)
 	{
-		if (*str == test)
-			return (s);
-		str++;
-		s++;
+		f(lst->content);
+		lst = lst->next;
 	}
-	if (*str == test)
-		return (s);
-	else
-		return (NULL);
 }

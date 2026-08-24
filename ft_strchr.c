@@ -1,19 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_front.c                                  :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dboldino <dboldino@student.42prague.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/08/24 16:55:59 by dboldino          #+#    #+#             */
-/*   Updated: 2026/08/24 17:59:51 by dboldino         ###   ########.fr       */
+/*   Created: 2026/08/24 18:39:37 by dboldino          #+#    #+#             */
+/*   Updated: 2026/08/24 19:04:53 by dboldino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-void ft_lstadd_front(t_list **lst, t_list *new)
+char	*ft_strchr(const char *s, int c)
 {
-	new->next = *lst;
-	*lst = new;
+	unsigned char		test;
+	const unsigned char	*str;
+
+	str = (const unsigned char *)s;
+	test = (unsigned char)c;
+	while (*str)
+	{
+		if (*str == test)
+			return (s);
+		str++;
+		s++;
+	}
+	if (*str == test)
+		return (s);
+	else
+		return (NULL);
 }

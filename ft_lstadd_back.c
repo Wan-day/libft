@@ -1,33 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dboldino <dboldino@student.42prague.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/08/24 18:39:40 by dboldino          #+#    #+#             */
-/*   Updated: 2026/08/24 18:39:41 by dboldino         ###   ########.fr       */
+/*   Created: 2026/08/24 17:43:53 by dboldino          #+#    #+#             */
+/*   Updated: 2026/08/24 19:00:40 by dboldino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#inldue "libft.h"
+#include "libft.h"
 
-char *strdup(const char *s)
+void	ft_lstadd_back(t_list **lst, t_list *new)
 {
-	char	*result;
-	size_t	len;
-	size_t	i;
+	t_list	*temp;
 
-	i = 0;
-	len = ft_strlen(s);
-	result = malloc((len + 1) * sizeof(char));
-	if (result == NULL)
-		return (NULL);
-	while (s[i])
-	{
-		result[i] = s[i];
-		i++;
-	}
-	result[i] = '\0';
-	return (result);
+	if (lst == NULL || new == NULL)
+		return ;
+	temp = ft_lstlast(*lst);
+	if (temp == NULL)
+		*lst = new;
+	else
+		temp->next = new;
 }

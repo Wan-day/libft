@@ -1,34 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dboldino <dboldino@student.42prague.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/08/24 18:39:15 by dboldino          #+#    #+#             */
-/*   Updated: 2026/08/24 18:39:16 by dboldino         ###   ########.fr       */
+/*   Created: 2026/08/24 14:54:03 by dboldino          #+#    #+#             */
+/*   Updated: 2026/08/24 19:05:30 by dboldino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void *calloc(size_t n, size_t size)
+char	*ft_strtrim(char const *s1, char const *set)
 {
-	unsigned char	*result;
-	size_t			i;
-	size_t			len;
+	size_t	i;
+	size_t	j;
+	size_t	len_s1;
+	char	*result;
 
 	i = 0;
-	if (size != 0 && n > SIZE_MAX / size)
-		return (NULL);
-	len = n * size;
-	result = malloc(len);
+	j = 0;
+	len_s1 = ft_strlen(s1);
+	while (i < len_s1 && ft_strchr(set, s1[i]) != NULL)
+		i++;
+	while (len_s1 > i && ft_strchr(set, s1[len_s1 - 1]) != NULL)
+		len_s1--;
+	result = malloc((len_s1 - i + 1) * sizeof(char));
 	if (result == NULL)
 		return (NULL);
-	while (i < len)
+	while (i < len_s1)
 	{
-		result[i] = 0;
+		result[j] = s1[i];
+		j++;
 		i++;
 	}
-	return ((void *)result);
+	result[j] = '\0';
+	return (result);
 }

@@ -1,28 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dboldino <dboldino@student.42prague.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/08/19 17:19:58 by dboldino          #+#    #+#             */
-/*   Updated: 2026/08/19 17:30:47 by dboldino         ###   ########.fr       */
+/*   Created: 2026/08/24 18:39:33 by dboldino          #+#    #+#             */
+/*   Updated: 2026/08/24 19:04:17 by dboldino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	*memcpy(void *dest, const void *src, size_t n)
-{
-	const unsigned char	*p_src;
-	unsigned char	*p_dest;
+#include "libft.h"
 
+void	*ft_memmove(void *dest, const void *src, size_t n)
+{
+	unsigned char		*p_dest;
+	const unsigned char	*p_src;
+	size_t				i;
+
+	p_dest = (unsigned char *)dest;
 	p_src = (const unsigned char *)src;
-	p_dest = (unsigned char*)dest;
-	while (n--)
+	i = 0;
+	if (p_src > p_dest)
 	{
-		*p_dest = *p_src;
-		p_dest++;
-		p_src++;
+		while (n--)
+		{
+			p_dest[i] = p_src[i];
+			i++;
+		}
+	}
+	else
+	{
+		while (n--)
+			p_dest[n] = p_src[n];
 	}
 	return (dest);
 }
-

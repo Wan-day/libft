@@ -1,30 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstclear.c                                      :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dboldino <dboldino@student.42prague.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/08/24 17:59:18 by dboldino          #+#    #+#             */
-/*   Updated: 2026/08/24 18:08:48 by dboldino         ###   ########.fr       */
+/*   Created: 2026/08/24 18:40:00 by dboldino          #+#    #+#             */
+/*   Updated: 2026/08/24 19:33:00 by dboldino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void ft_lstclear(t_list **lst, void (*del)(void *))
+char	*ft_strrchr(const char *s, int c)
 {
-	t_list	*prev;
-	t_list	*next;
+	unsigned char		test;
+	const unsigned char	*str;
+	size_t				len;
 
-	if (lst == NULL || *lst == NULL)
-		return ;
-	prev = *lst;
-	while (prev != NULL)
+	len = ft_strlen(s);
+	str = (const unsigned char *)s;
+	test = (unsigned char)c;
+	if (str[len] == test)
+		return (&s[len]);
+	if (len != 0)
+		len--;
+	while (len > 0)
 	{
-		next = prev->next;
-		ft_lstdelone(prev, del);
-		prev = next;
+		if (str[len] == test)
+			return (&s[len]);
+		len--;
 	}
-	*lst = NULL;
+	if (str[len] == test)
+		return (&s[len]);
+	return (NULL);
 }

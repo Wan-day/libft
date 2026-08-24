@@ -1,26 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   ft_lstsize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dboldino <dboldino@student.42prague.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/08/19 16:54:29 by dboldino          #+#    #+#             */
-/*   Updated: 2026/08/19 17:13:58 by dboldino         ###   ########.fr       */
+/*   Created: 2026/08/24 17:00:01 by dboldino          #+#    #+#             */
+/*   Updated: 2026/08/24 19:02:29 by dboldino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	*memset(void *s, int c, size_t n)
-{
-	unsigned char	*arr;
-	unsigned char	value;
+#include "libft.h"
 
-	arr = (unsigned char*)b;
-	value = c;
-	while (n--)
+unsigned int	ft_lstsize(t_list *lst)
+{
+	unsigned int	i;
+	t_list			*temp;
+
+	temp = lst;
+	i = 0;
+	while (temp != NULL)
 	{
-		*arr = value;
-		arr++;
+		temp = temp->next;
+		i++;
 	}
-	return (s);
+	return (i);
 }

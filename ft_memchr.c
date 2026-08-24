@@ -1,35 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dboldino <dboldino@student.42prague.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/08/24 18:39:09 by dboldino          #+#    #+#             */
-/*   Updated: 2026/08/24 18:39:11 by dboldino         ###   ########.fr       */
+/*   Created: 2026/08/24 18:39:21 by dboldino          #+#    #+#             */
+/*   Updated: 2026/08/24 19:32:03 by dboldino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int atoi(const char *nptr)
-{
-	int	sign;
-	int	result;
+#include "libft.h"
 
-	sign = 1;
-	result = 0;
-	while ((*nptr >= 9 && *nptr <= 13) || *nptr == 32)
-		nptr++;
-	if (*nptr == '-')
+void	*ft_memchr(const void *s, int c, size_t n)
+{
+	size_t				i;
+	unsigned char		to_find;
+	const unsigned char	*str;
+
+	i = 0;
+	to_find = (unsigned char)c;
+	str = (const unsigned char *)s;
+	while (i < n)
 	{
-		sign = -sign;
-		nptr++;
+		if (str[i] == to_find)
+			return ((void *)&str[i]);
+		i++;
 	}
-	else if (*nptr == '+')
-		nptr++;
-	while (*nptr >= '0' && *nptr <= '9')
-	{
-		result = (10 * result) + (*nptr - '0');
-		nptr++;
-	}
-	return (result * sign);
+	return (NULL);
 }

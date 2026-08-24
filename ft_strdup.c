@@ -1,40 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strtrim.c                                       :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dboldino <dboldino@student.42prague.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/08/24 14:54:03 by dboldino          #+#    #+#             */
-/*   Updated: 2026/08/24 14:54:05 by dboldino         ###   ########.fr       */
+/*   Created: 2026/08/24 18:39:40 by dboldino          #+#    #+#             */
+/*   Updated: 2026/08/24 19:05:53 by dboldino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#inclide "libft.h"
+#include "libft.h"
 
-char	*ft_strtrim(char const *s1, char const *set)
+char	*ft_strdup(const char *s)
 {
-	size_t	i;
-	size_t	j;
-	size_t	len_s1;
 	char	*result;
+	size_t	len;
+	size_t	i;
 
 	i = 0;
-	j = 0;
-	len_s1 = ft_strlen(s1);
-	while (i < len_s1 && ft_strchr(set, s1[i]) != NULL)
-		i++;
-	while (len_s1 > i && ft_strchr(set, s1[len_s1 - 1]) != NULL)
-		len_s1--;
-	result = malloc((len_s1 - i + 1) * sizeof(char));
+	len = ft_strlen(s);
+	result = malloc((len + 1) * sizeof(char));
 	if (result == NULL)
 		return (NULL);
-	while(i < len_s1)
+	while (s[i])
 	{
-		result[j] = s1[i];
-		j++;
+		result[i] = s[i];
 		i++;
 	}
-	result[j] = '\0';
+	result[i] = '\0';
 	return (result);
 }

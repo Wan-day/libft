@@ -1,20 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isprint.c                                       :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dboldino <dboldino@student.42prague.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/08/19 16:47:59 by dboldino          #+#    #+#             */
-/*   Updated: 2026/08/19 16:50:46 by dboldino         ###   ########.fr       */
+/*   Created: 2026/08/24 18:39:09 by dboldino          #+#    #+#             */
+/*   Updated: 2026/08/24 19:01:42 by dboldino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
-int	ft_isprint(int c)
+int	ft_atoi(const char *nptr)
 {
-	if (c >= 32 && c <= 127)
-		return (1);
-	else
-		return (0);
+	int	sign;
+	int	result;
+
+	sign = 1;
+	result = 0;
+	while ((*nptr >= 9 && *nptr <= 13) || *nptr == 32)
+		nptr++;
+	if (*nptr == '-')
+	{
+		sign = -sign;
+		nptr++;
+	}
+	else if (*nptr == '+')
+		nptr++;
+	while (*nptr >= '0' && *nptr <= '9')
+	{
+		result = (10 * result) + (*nptr - '0');
+		nptr++;
+	}
+	return (result * sign);
 }
