@@ -1,35 +1,114 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_split.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dboldino <dboldino@student.42prague.fr>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/08/24 11:58:44 by dboldino          #+#    #+#             */
+/*   Updated: 2026/08/24 14:53:37 by dboldino         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
+
+static int	is_separator(char c, char sep)
+{
+	if (c == sep)
+		return (1);
+	else
+		return (0);
+}
+
+static int	count_words(char const *str, char sep)
+{
+	int	i;
+	int	words;
+
+	i = 0;
+	words = 0;
+	while (str[i])
+	{
+		if (!is_separator(str[i], sep))
+		{
+			words++;
+			while (str[i] && !is_separator(str[i], sep))
+				i++;
+		}
+		else
+			i++;
+	}
+	return (words);
+}
+
+static char	*word_splitter(char const *str, char sep)
+{
+	char	*word;
+	int		i;
+
+	i = 0;
+	while (str[i] && !is_separator(str[i], sep))
+		i++;
+	word = malloc((i + 1) * sizeof(char));
+	if (word == NULL)
+		return (NULL);
+	i = 0;
+	while (str[i] && !is_separator(str[i], sep))
+	{
+		word[i] = str[i];
+		i++;
+	}
+	word[i] = '\0';
+	return (word);
+}
+
+static int	helper(char const *s, char c, char **words)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	while (s[i])
+	{
+		if (!is_separator(s[i], c))
+		{
+			words[j] = word_splitter(&s[i], c);
+			if (words[j] == NULL)
+				return (-1);
+			while (s[i] && !is_separator(s[i], c))
+				i++;
+			j++;
+		}
+		else
+			i++;
+	}
+	return (j);
+}
 
 char	**ft_split(char const *s, char c)
 {
-	char	*p_delim;
-	char	**result;
-	size_t	len_s;
+	int		i;
+	int		j;
+	char	**words;
 
-	len_s = ft_strlen(s);
-	p_delim = ft_strchr(s, c);
-	if (p_delim = NULL)
+	i = 0;
+	if (s == NULL)
+		return (NULL);
+	words = malloc((count_words(s, c) + 1) * sizeof(char *));
+	if (words == NULL)
+		return (NULL);
+	j = helper(s, c, words);
+	if (j == -1)
 	{
-		result = malloc(sizeof(int) * 2);
-		if (result == NULL)
-			return (NULL);
-		result[0] = strdup(s);
-		if (result[0] == NULL)
-			return (NULL);
-		result[1] = NULL;
-		return (result);
+		while (words[i] != NULL)
+		{
+			free(words[i]);
+			i++;
+		}
+		free(words);
+		return (NULL);
 	}
-	else
-	{
-		result = malloc(sizeof(int) * 3);
-		if (result == NULL)
-			return (NULL);
-		result[1] = ft_substr(s, (p_delim + 1), len_s);
-		result[2] = NULL;
-		result[0] = malloc(p_delim - s + (1 * sizeof(char)));
-		if (result[0] == NULL || result[1] == NULL)
-			return (NULL);
-		(void)ft_strlcpy(result[0], s, (p_delim - s));
-		return (result);
-	}
+	words[j] = NULL;
+	return (words);
 }

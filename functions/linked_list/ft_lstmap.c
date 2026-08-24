@@ -1,32 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
+/*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dboldino <dboldino@student.42prague.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/08/24 18:39:47 by dboldino          #+#    #+#             */
-/*   Updated: 2026/08/24 18:39:48 by dboldino         ###   ########.fr       */
+/*   Created: 2026/08/24 18:12:44 by dboldino          #+#    #+#             */
+/*   Updated: 2026/08/24 18:38:16 by dboldino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlcpy(char *dest, const char *src, size_t dsize)
+t_list *ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	size_t	i;
-	size_t	size_of_src;
+	t_list	*result;
+	t_list	*temp;
+	void	*changed_content;
 
-	i = 0;
-	size_of_src = ft_strlen(src);
-	if (dsize > 0)
+	result = NULL;
+	if (f && del)
 	{
-		while (src[i] && i < dsize - 1)
+		while (lst != NULL)
 		{
-			dest[i] = src[i];
-			i++;
+			changed_content = f(lst->content);
+			temp = ft_lstnew(changed_content);
+			if (temp == NULL)
+			{
+				del(changed_content);
+				ft_lstclear(&result, del);
+				return (NULL);
+			}
+			ft_lstadd_back(&result, temp);
+			lst = lst->next;
 		}
-		dest[i] = '\0';
 	}
-	return (size_of_src);
+	return (result);
 }

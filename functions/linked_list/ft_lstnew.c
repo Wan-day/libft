@@ -1,35 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strrchr.c                                       :+:      :+:    :+:   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dboldino <dboldino@student.42prague.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/08/24 18:40:00 by dboldino          #+#    #+#             */
-/*   Updated: 2026/08/24 18:40:01 by dboldino         ###   ########.fr       */
+/*   Created: 2026/08/24 16:25:07 by dboldino          #+#    #+#             */
+/*   Updated: 2026/08/24 16:30:42 by dboldino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char *strrchr(const char *s, int c)
-{
-	unsigned char		test;
-	const unsigned char	*str;
-	size_t				len;
+#include "libft.h"
 
-	len = ft_strlen(s);
-	str = (const unsigned char *)s;
-	test = (unsigned char)c;
-	if (str[len] == test)
-		return (&s[len]);
-	if (len != 0)
-		len--;
-	while (len > 0)
-	{
-		if (str[len] == test)
-			return (&s[len]);
-		len--;
-	}
-	if (str[len] == test)
-		return (&s[len]);
-	return (NULL);
+t_list *ft_lstnew_list(void *content)
+{
+	t_list	*new_list;
+
+	new_list = malloc(sizeof(t_list));
+	if (new_list == NULL)
+		return (NULL);
+	new_list->content = content;
+	new_list->next = NULL;
+	return (new_list);
 }

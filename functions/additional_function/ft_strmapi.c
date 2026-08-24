@@ -1,35 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strrchr.c                                       :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dboldino <dboldino@student.42prague.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/08/24 18:40:00 by dboldino          #+#    #+#             */
-/*   Updated: 2026/08/24 18:40:01 by dboldino         ###   ########.fr       */
+/*   Created: 2026/08/24 15:46:23 by dboldino          #+#    #+#             */
+/*   Updated: 2026/08/24 15:52:39 by dboldino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char *strrchr(const char *s, int c)
-{
-	unsigned char		test;
-	const unsigned char	*str;
-	size_t				len;
+#include "libft.h"
 
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
+{
+	char			*result;
+	size_t			len;
+	unsigned int	i;
+
+	if (s == NULL || f == NULL)
+		return (NULL);
+	i = 0;
 	len = ft_strlen(s);
-	str = (const unsigned char *)s;
-	test = (unsigned char)c;
-	if (str[len] == test)
-		return (&s[len]);
-	if (len != 0)
-		len--;
-	while (len > 0)
+	result = malloc((len + 1) * sizeof(char));
+	if (result == NULL)
+		return (NULL);
+	while (i < len)
 	{
-		if (str[len] == test)
-			return (&s[len]);
-		len--;
+		result[i] = f(i, s[i]);
+		i++;
 	}
-	if (str[len] == test)
-		return (&s[len]);
-	return (NULL);
+	result[i] = '\0';
+	return (result);
 }

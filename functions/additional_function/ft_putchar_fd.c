@@ -1,35 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strrchr.c                                       :+:      :+:    :+:   */
+/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dboldino <dboldino@student.42prague.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/08/24 18:40:00 by dboldino          #+#    #+#             */
-/*   Updated: 2026/08/24 18:40:01 by dboldino         ###   ########.fr       */
+/*   Created: 2026/08/24 15:57:41 by dboldino          #+#    #+#             */
+/*   Updated: 2026/08/24 15:59:54 by dboldino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char *strrchr(const char *s, int c)
-{
-	unsigned char		test;
-	const unsigned char	*str;
-	size_t				len;
+#include "libft.h"
 
-	len = ft_strlen(s);
-	str = (const unsigned char *)s;
-	test = (unsigned char)c;
-	if (str[len] == test)
-		return (&s[len]);
-	if (len != 0)
-		len--;
-	while (len > 0)
-	{
-		if (str[len] == test)
-			return (&s[len]);
-		len--;
-	}
-	if (str[len] == test)
-		return (&s[len]);
-	return (NULL);
+void	ft_putchar_fd(char c, int fd)
+{
+	write(fd, &c, 1);
 }

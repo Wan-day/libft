@@ -1,35 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strrchr.c                                       :+:      :+:    :+:   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dboldino <dboldino@student.42prague.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/08/24 18:40:00 by dboldino          #+#    #+#             */
-/*   Updated: 2026/08/24 18:40:01 by dboldino         ###   ########.fr       */
+/*   Created: 2026/08/24 15:53:10 by dboldino          #+#    #+#             */
+/*   Updated: 2026/08/24 16:00:05 by dboldino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char *strrchr(const char *s, int c)
+void	ft_striteri(char *s, void (*f)(unsigned int, char*))
 {
-	unsigned char		test;
-	const unsigned char	*str;
-	size_t				len;
+	unsigned int	i;
 
-	len = ft_strlen(s);
-	str = (const unsigned char *)s;
-	test = (unsigned char)c;
-	if (str[len] == test)
-		return (&s[len]);
-	if (len != 0)
-		len--;
-	while (len > 0)
+	i = 0;
+	if (s == NULL || f == NULL)
+		return ;
+	while (s[i])
 	{
-		if (str[len] == test)
-			return (&s[len]);
-		len--;
+		f(i, &s[i]);
+		i++;
 	}
-	if (str[len] == test)
-		return (&s[len]);
-	return (NULL);
 }
