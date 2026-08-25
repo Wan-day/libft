@@ -29,7 +29,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	result = malloc((size_of_s1 + size_of_s2 + 1) * sizeof(char));
 	if (result == NULL)
 		return (NULL);
-	ft_strlcpy(result, s1, size_of_s1);
+	ft_strlcpy(result, s1, size_of_s1 + 1);
 	while (i < size_of_s2)
 	{
 		result[size_of_s1++] = s2[i];

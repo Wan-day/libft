@@ -37,6 +37,7 @@ static char	*num_to_str(long num, char *str, size_t len)
 	str = malloc((len + 1) * sizeof(char));
 	if (str == NULL)
 		return (NULL);
+	str[len] = '\0';
 	if (num < 0)
 	{
 		str[0] = '-';
