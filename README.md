@@ -88,6 +88,6 @@ To compile and use the library you need to use the Makefile that is already pres
 
 ## Resources
 
-For the creating and writing of the functions I have use the man pages to see how to real functions operate and their prototypes. Additionally the AI was used as an assistant when debugging the functions when I was stuck.
+For the creating and writing of the functions I have used the man pages to see how to real functions operate and their prototypes. Additionally the AI was used as an assistant when debugging the functions when I was stuck.
 
 
