@@ -24,12 +24,12 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	size_of_s2 = ft_strlen(s2);
 	if (*s2 == '\0')
 		return (ft_strdup(s1));
-	else if (size_of_s1 >= SIZE_MAX - size_of_s2)
+	else if (size_of_s1 >= (size_t)-1 - size_of_s2)
 		return (NULL);
 	result = malloc((size_of_s1 + size_of_s2 + 1) * sizeof(char));
 	if (result == NULL)
 		return (NULL);
-	result = ft_strcpy(result, s1);
+	ft_strlcpy(result, s1, size_of_s1);
 	while (i < size_of_s2)
 	{
 		result[size_of_s1++] = s2[i];

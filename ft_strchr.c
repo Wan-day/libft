@@ -10,6 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
+
 char	*ft_strchr(const char *s, int c)
 {
 	unsigned char		test;
@@ -20,12 +22,12 @@ char	*ft_strchr(const char *s, int c)
 	while (*str)
 	{
 		if (*str == test)
-			return (s);
+			return ((char *)s);
 		str++;
 		s++;
 	}
 	if (*str == test)
-		return (s);
+		return ((char *)s);
 	else
 		return (NULL);
 }

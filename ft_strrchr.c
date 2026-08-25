@@ -22,16 +22,16 @@ char	*ft_strrchr(const char *s, int c)
 	str = (const unsigned char *)s;
 	test = (unsigned char)c;
 	if (str[len] == test)
-		return (&s[len]);
+		return ((char *)&s[len]);
 	if (len != 0)
 		len--;
 	while (len > 0)
 	{
 		if (str[len] == test)
-			return (&s[len]);
+			return ((char *)&s[len]);
 		len--;
 	}
 	if (str[len] == test)
-		return (&s[len]);
+		return ((char *)&s[len]);
 	return (NULL);
 }

@@ -19,7 +19,7 @@ void	*ft_calloc(size_t n, size_t size)
 	size_t			len;
 
 	i = 0;
-	if (size != 0 && n > SIZE_MAX / size)
+	if (size != 0 && n > (size_t)-1 / size)
 		return (NULL);
 	len = n * size;
 	result = malloc(len);

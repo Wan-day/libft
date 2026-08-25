@@ -22,13 +22,13 @@ char	*ft_strnstr(const char *big, const char *little, size_t len)
 	len_little = ft_strlen(little);
 	len_big = ft_strlen(big);
 	if (*little == '\0')
-		return (big);
+		return ((char *)big);
 	if (len_little > len_big)
 		return (NULL);
 	while (i + len_little <= len && i + len_little <= len_big)
 	{
 		if (ft_strncmp(&big[i], little, len_little) == 0)
-			return (&big[i]);
+			return ((char *)&big[i]);
 		i++;
 	}
 	return (NULL);
