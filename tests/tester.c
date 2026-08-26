@@ -28,7 +28,7 @@ static int capture_fd(void (*fn)(void), const char *expected)
     if (n < 0)
         return 0;
     buf[n] = 0;
-    return strcmp(buf, expected) == 0;
+	return strcmp(buf, expected) == 0;
 }
 static void out_char(void) { ft_putchar_fd('Z', STDOUT_FILENO); }
 static void out_str(void) { ft_putstr_fd("hello", STDOUT_FILENO); }
@@ -64,8 +64,7 @@ int main(void)
     TEST("ft_strrchr", ft_strrchr("abcabc",'b') == strrchr("abcabc",'b') && ft_strrchr("abc",'\0') == strrchr("abc",'\0'));
     TEST("ft_strncmp", sign_same(ft_strncmp("abc","abd",3),strncmp("abc","abd",3)) && ft_strncmp("abc","xyz",0)==0);
     char original[] = "hello"; s = ft_strdup(original);
-	TEST("ft_strdup",
-    s && strcmp(s, original) == 0 && s != original);
+	TEST("ft_strdup", s && strcmp(s, original) == 0 && s != original);
 	memset(a,'Q',sizeof(a)); r=ft_strlcpy(a,"hello",4);
 	TEST("ft_strlcpy", r==5 && strcmp(a,"hel")==0);
     strcpy(a,"abc"); r=ft_strlcat(a,"XYZ",sizeof(a));
