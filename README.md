@@ -5,7 +5,7 @@
 This is the project that has the goal of recreating and learning some basic libc functions and extra functions provided by the 42Prague libft project. In total there are 39 functions that can be divided into several groups:
 
  1. Functions that are used for working with linked lists.
- 2. Functions that check if the char belongs in a specific group (isdigit, isalpha, etc.)
+ 2. Functions that check if the char belongs in a specific group.
  3. Functions that work with memory.
  4. Functions that work with strings.
  5. Functions that produce output on a specific file descriptor.
