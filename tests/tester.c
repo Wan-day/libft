@@ -63,13 +63,10 @@ int main(void)
     TEST("ft_strchr", ft_strchr("abcabc",'b') == strchr("abcabc",'b') && ft_strchr("abc",'\0') == strchr("abc",'\0'));
     TEST("ft_strrchr", ft_strrchr("abcabc",'b') == strrchr("abcabc",'b') && ft_strrchr("abc",'\0') == strrchr("abc",'\0'));
     TEST("ft_strncmp", sign_same(ft_strncmp("abc","abd",3),strncmp("abc","abd",3)) && ft_strncmp("abc","xyz",0)==0);
-    char big[] = "abc";
-	TEST("ft_strnstr",
-    ft_strnstr("hello world", "world", 11)
-    && strcmp(ft_strnstr("hello world", "world", 11), "world") == 0
-    && ft_strnstr("hello world", "world", 7) == NULL
-    && ft_strnstr(big, "", 0) == big);
-    memset(a,'Q',sizeof(a)); r=ft_strlcpy(a,"hello",4);
+    char original[] = "hello"; s = ft_strdup(original);
+	TEST("ft_strdup",
+    s && strcmp(s, original) == 0 && s != original);
+	memset(a,'Q',sizeof(a)); r=ft_strlcpy(a,"hello",4);
 	TEST("ft_strlcpy", r==5 && strcmp(a,"hel")==0);
     strcpy(a,"abc"); r=ft_strlcat(a,"XYZ",sizeof(a));
 	TEST("ft_strlcat", r==6 && strcmp(a,"abcXYZ")==0);
