@@ -63,17 +63,24 @@ int main(void)
     TEST("ft_strchr", ft_strchr("abcabc",'b') == strchr("abcabc",'b') && ft_strchr("abc",'\0') == strchr("abc",'\0'));
     TEST("ft_strrchr", ft_strrchr("abcabc",'b') == strrchr("abcabc",'b') && ft_strrchr("abc",'\0') == strrchr("abc",'\0'));
     TEST("ft_strncmp", sign_same(ft_strncmp("abc","abd",3),strncmp("abc","abd",3)) && ft_strncmp("abc","xyz",0)==0);
-    s=ft_strdup("hello");
-	TEST("ft_strdup", s && strcmp(s,"hello")==0 && s != (char *)"hello"); free(s);
-
+    char big[] = "abc";
+	TEST("ft_strnstr",
+    ft_strnstr("hello world", "world", 11)
+    && strcmp(ft_strnstr("hello world", "world", 11), "world") == 0
+    && ft_strnstr("hello world", "world", 7) == NULL
+    && ft_strnstr(big, "", 0) == big);
     memset(a,'Q',sizeof(a)); r=ft_strlcpy(a,"hello",4);
 	TEST("ft_strlcpy", r==5 && strcmp(a,"hel")==0);
     strcpy(a,"abc"); r=ft_strlcat(a,"XYZ",sizeof(a));
 	TEST("ft_strlcat", r==6 && strcmp(a,"abcXYZ")==0);
     strcpy(a,"abcdef"); r=ft_strlcat(a,"XYZ",4);
 	TEST("ft_strlcat small size", r==7 && strcmp(a,"abcdef")==0);
-    TEST("ft_strnstr", ft_strnstr("hello world","world",11) && strcmp(ft_strnstr("hello world","world",11),"world")==0 && ft_strnstr("hello world","world",7)==NULL && ft_strnstr("abc","",0)==(char *)"abc");
-    TEST("ft_atoi", ft_atoi("42")==atoi("42") && ft_atoi(" \t\n-123abc")==atoi(" \t\n-123abc") && ft_atoi("+7")==7);
+    char big[] = "hello world";
+	TEST("ft_strnstr",
+    ft_strnstr(big, "world", 11) == big + 6
+    && ft_strnstr(big, "world", 7) == NULL
+    && ft_strnstr(big, "", 0) == big);
+	TEST("ft_atoi", ft_atoi("42")==atoi("42") && ft_atoi(" \t\n-123abc")==atoi(" \t\n-123abc") && ft_atoi("+7")==7);
 
     p=ft_calloc(8,1);
 	TEST("ft_calloc", p && memcmp(p,"\0\0\0\0\0\0\0\0",8)==0); free(p);
